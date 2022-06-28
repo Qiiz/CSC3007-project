@@ -6,6 +6,6 @@ module.exports = defineConfig({
   publicPath: '',
   outputDir: 'docs',
   pwa: {
-    name: 'SG Crime Rate'
+    name: 'CSC3007 Project'
   }
 })
