@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-        <div class="text-justify">
+    <div class="text-justify">
+        <v-container style="max-width: 1280px;">
             <v-row>
                 <v-col class="sm-12">
                     <h1>Visualisation Approach 1</h1>
@@ -15,6 +15,7 @@
                     </p>
                     <a href="img/2552_Buzz-vs-Bulge-4.png" target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/2552_Buzz-vs-Bulge-4.png"
                             alt="caffeine-and-calories"
                         ></v-img
@@ -102,6 +103,7 @@
 
                     <a href="img/v1_prototype1.png" target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/v1_prototype1.png"
                             alt="v1_prototype1.png"
                         ></v-img
@@ -109,6 +111,7 @@
 
                     <a href="img/v1_prototype2.png" target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/v1_prototype2.png"
                             alt="v1_prototype2.png"
                         ></v-img
@@ -116,6 +119,7 @@
 
                     <a href="img/v1_prototype3.png" target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/v1_prototype3.png"
                             alt="v1_prototype3.png"
                         ></v-img
@@ -142,6 +146,7 @@
                         href="img/2552_UK-Government-Spending.png"
                         target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/2552_UK-Government-Spending.png"
                             alt="2552_UK-Government-Spending.png"
                         ></v-img
@@ -207,6 +212,7 @@
 
                     <a href="img/v2_prototype2.png" target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/v2_prototype2.png"
                             alt="v2_prototype1.png"
                         ></v-img
@@ -214,14 +220,15 @@
 
                     <a href="img/v2_prototype2.png" target="_blank"
                         ><v-img
+                            max-width="1024"
                             src="img/v2_prototype2.png"
                             alt="v2_prototype2.png"
                         ></v-img
                     ></a>
                 </v-col>
             </v-row>
-        </div>
-    </v-container>
+        </v-container>
+    </div>
 </template>
 
 <script lang="ts">
@@ -248,3 +255,9 @@
         }
     }
 </script>
+
+<style>
+v-img {
+    
+}
+</style>
