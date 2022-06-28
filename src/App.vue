@@ -16,7 +16,10 @@
                 </template>
             </v-toolbar>
         </v-card>
-        <router-view />
+        <v-main>
+            <router-view />
+        </v-main>
+        <v-footer> 2022 </v-footer>
     </v-app>
 </template>
 
@@ -33,5 +36,4 @@
 </script>
 
 <style>
-
 </style>

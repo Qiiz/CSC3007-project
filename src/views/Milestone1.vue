@@ -1,6 +1,6 @@
 <template>
     <div class="text-justify">
-        <v-container style="max-width: 1280px;">
+        <v-container style="max-width: 1280px">
             <v-row>
                 <v-col class="sm-12">
                     <h1>Visualisation Approach 1</h1>

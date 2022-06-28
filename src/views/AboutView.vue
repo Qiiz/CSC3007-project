@@ -1,6 +1,14 @@
 <template>
     <div class="about">
-        <MainBody msg="CSC3007 Project Repository" />
+        <v-container style="max-width: 1280px">
+            <MainBody msg="CSC3007 Project Repository" />
+            <h2>Source Working in Progress Document</h2>
+            <iframe
+                width="100%"
+                src="https://docs.google.com/document/d/e/2PACX-1vTcgUsz3thLMaD6UI9_w3rjACtKHN2u8CjrHxN--DCCCMs9JSRUnpC1DnlXUqijLhfOoE0nzxkTHmFJ/pub?embedded=true"
+                @load="resizeIframe"
+            ></iframe>
+        </v-container>
     </div>
 </template>
 
@@ -13,5 +21,13 @@
             MainBody,
         },
     })
-    export default class HomeView extends Vue { }
+    export default class AboutView extends Vue
+    {
+
+        resizeIframe(e: { target: HTMLIFrameElement })
+        {
+            const obj = e.target
+            obj.style.height = window.document.documentElement.scrollHeight - 300 + 'px';
+        }
+    }
 </script>
