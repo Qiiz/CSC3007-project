@@ -255,9 +255,3 @@
         }
     }
 </script>
-
-<style>
-v-img {
-    
-}
-</style>
