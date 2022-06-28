@@ -2,7 +2,7 @@
     <v-app>
         <v-card :class="radius">
             <v-toolbar color="dark" dark flat>
-                <v-toolbar-title>Singapore Crime Rate</v-toolbar-title>
+                <v-toolbar-title>CSC3007 Project</v-toolbar-title>
 
                 <v-spacer></v-spacer>
 
@@ -10,7 +10,7 @@
                     <v-tabs v-model="tab" align-with-title>
                         <v-tabs-slider color="white"></v-tabs-slider>
 
-                        <v-tab to="/">Home</v-tab>
+                        <v-tab to="/">Milestone 1</v-tab>
                         <v-tab to="/about">About</v-tab>
                     </v-tabs>
                 </template>
@@ -33,11 +33,5 @@
 </script>
 
 <style>
-    #app {
-        font-family: Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-    }
+
 </style>

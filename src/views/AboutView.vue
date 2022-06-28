@@ -1,7 +1,6 @@
 <template>
     <div class="about">
-        <MainBody msg="Data Source: " />
-        <a target="_blank" href="https://data.gov.sg/dataset/cases-recorded-for-selected-major-offences">https://data.gov.sg/dataset/cases-recorded-for-selected-major-offences</a>
+        <MainBody msg="CSC3007 Project Repository" />
     </div>
 </template>
 
