@@ -213,7 +213,7 @@
                     <a href="img/v2_prototype2.png" target="_blank"
                         ><v-img
                             max-width="1024"
-                            src="img/v2_prototype2.png"
+                            src="img/v2_prototype1.png"
                             alt="v2_prototype1.png"
                         ></v-img
                     ></a>
