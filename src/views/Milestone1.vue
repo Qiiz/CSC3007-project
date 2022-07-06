@@ -154,7 +154,7 @@
                     </p>
 
                     <p>
-                        Static <a href="https://docs.google.com/spreadsheets/d/1UZK9gBSY68KxGqP3cwY6-9f7CxqP7WnCIlTxuDzcRT4/" target="_blank">data</a> 
+                        Static <a href="https://docs.google.com/spreadsheets/d/1UZK9gBSY68KxGqP3cwY6-9f7CxqP7WnCIlTxuDzcRT4/" target="_blank">data</a>
                         from rows of data in tables.
                     </p>
 
@@ -181,7 +181,7 @@
                     <ul>
                         <li> <b>Consume:</b> Discover and Enjoy</li>
                         <li> <b>Search:</b> Explore</li>
-                        <li><b>Query:</b> Explore </li>
+                        <li><b>Query:</b> Compare</li>
                     </ul>
                     </p>
 
@@ -215,12 +215,12 @@
 
                     <h2>Prototype</h2>
                     <p>
-                        With the above issue, our team has come out with the following prototype to better represent the data. 
-                        To better represent the data as a whole, 
-                        we have decided to utilise the old school method of the pie chart to better help readers understand the information better. 
-                        Especially when it comes to the comparison of monies, a pie chart could prove to provide better visualisation. 
-                        Since there is so much more information to visualise, 
-                        our team has decided to make an explosive pie chart with user interactive ability to filter with the different sectors they are interested in and their data representation. 
+                        With the above issue, our team has come out with the following prototype to better represent the data.
+                        To better represent the data as a whole,
+                        we have decided to utilise the old school method of the pie chart to better help readers understand the information better.
+                        Especially when it comes to the comparison of monies, a pie chart could prove to provide better visualisation.
+                        Since there is so much more information to visualise,
+                        our team has decided to make an explosive pie chart with user interactive ability to filter with the different sectors they are interested in and their data representation.
                         The general overview alone could help provide a comparison of incomes and expenditures as a whole and could easily determine any deficits if any.
                     </p>
 
