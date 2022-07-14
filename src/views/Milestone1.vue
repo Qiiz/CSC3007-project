@@ -6,20 +6,12 @@
                     <h1>Visualisation Approach 1</h1>
 
                     <p>
-                        <a
-                            href="https://informationisbeautiful.net/visualizations/caffeine-and-calories/"
-                            target="_blank"
-                        >
-                            https://informationisbeautiful.net/visualizations/caffeine-and-calories/</a
-                        >
+                        <a href="https://informationisbeautiful.net/visualizations/caffeine-and-calories/" target="_blank">
+                            https://informationisbeautiful.net/visualizations/caffeine-and-calories/</a>
                     </p>
-                    <a href="img/2552_Buzz-vs-Bulge-4.png" target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/2552_Buzz-vs-Bulge-4.png"
-                            alt="caffeine-and-calories"
-                        ></v-img
-                    ></a>
+                    <a href="img/2552_Buzz-vs-Bulge-4.png" target="_blank">
+                        <v-img max-width="1024" src="img/2552_Buzz-vs-Bulge-4.png" alt="caffeine-and-calories"></v-img>
+                    </a>
 
                     <p>
                         <b>Domain:</b> There is a difference in understanding
@@ -101,29 +93,17 @@
                         specific needs.
                     </p>
 
-                    <a href="img/v1_prototype1.png" target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/v1_prototype1.png"
-                            alt="v1_prototype1.png"
-                        ></v-img
-                    ></a>
+                    <a href="img/v1_prototype1.png" target="_blank">
+                        <v-img max-width="1024" src="img/v1_prototype1.png" alt="v1_prototype1.png"></v-img>
+                    </a>
 
-                    <a href="img/v1_prototype2.png" target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/v1_prototype2.png"
-                            alt="v1_prototype2.png"
-                        ></v-img
-                    ></a>
+                    <a href="img/v1_prototype2.png" target="_blank">
+                        <v-img max-width="1024" src="img/v1_prototype2.png" alt="v1_prototype2.png"></v-img>
+                    </a>
 
-                    <a href="img/v1_prototype3.png" target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/v1_prototype3.png"
-                            alt="v1_prototype3.png"
-                        ></v-img
-                    ></a>
+                    <a href="img/v1_prototype3.png" target="_blank">
+                        <v-img max-width="1024" src="img/v1_prototype3.png" alt="v1_prototype3.png"></v-img>
+                    </a>
                 </v-col>
             </v-row>
 
@@ -135,22 +115,12 @@
                     <h1>Visualisation Approach 2</h1>
 
                     <p>
-                        <a
-                            href="https://informationisbeautiful.net/visualizations/uk-government-spending-incomes-outcomes/"
-                            target="_blank"
-                        >
-                            https://informationisbeautiful.net/visualizations/uk-government-spending-incomes-outcomes/</a
-                        >
+                        <a href="https://informationisbeautiful.net/visualizations/uk-government-spending-incomes-outcomes/" target="_blank">
+                            https://informationisbeautiful.net/visualizations/uk-government-spending-incomes-outcomes/</a>
                     </p>
-                    <a
-                        href="img/2552_UK-Government-Spending.png"
-                        target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/2552_UK-Government-Spending.png"
-                            alt="2552_UK-Government-Spending.png"
-                        ></v-img
-                    ></a>
+                    <a href="img/2552_UK-Government-Spending.png" target="_blank">
+                        <v-img max-width="1024" src="img/2552_UK-Government-Spending.png" alt="2552_UK-Government-Spending.png"></v-img>
+                    </a>
 
                     <p>
                         <b>Domain:</b> The domain situation was interpreted
@@ -196,13 +166,12 @@
                         <b>Prototype:</b> With the above issue, our team has
                         come out with the following prototype to better
                         represent the data. To better represent the data as a
-                        whole, we have decided to utilise the old school method
-                        of the pie chart to better help readers understand the
+                        whole, we have decided to utilise the Sunburst to better help readers understand the
                         information better. Especially when it comes to the
-                        comparison of monies, a pie chart could prove to provide
+                        comparison of monies, a Sunburst could prove to provide
                         better visualisation. Since there is so much more
                         information to visualise, our team has decided to make
-                        an explosive pie chart with user interactive ability to
+                        an Sunburst with user interactive ability to
                         filter with the different sectors they are interested in
                         and their data representation. The general overview
                         alone could help provide a comparison of incomes and
@@ -210,21 +179,13 @@
                         deficits if any.
                     </p>
 
-                    <a href="img/v2_prototype2.png" target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/v2_prototype1.png"
-                            alt="v2_prototype1.png"
-                        ></v-img
-                    ></a>
+                    <a href="img/v2_prototype2.png" target="_blank">
+                        <v-img max-width="1024" src="img/v2_prototype1.png" alt="v2_prototype1.png"></v-img>
+                    </a>
 
-                    <a href="img/v2_prototype2.png" target="_blank"
-                        ><v-img
-                            max-width="1024"
-                            src="img/v2_prototype2.png"
-                            alt="v2_prototype2.png"
-                        ></v-img
-                    ></a>
+                    <a href="img/v2_prototype2.png" target="_blank">
+                        <v-img max-width="1024" src="img/v2_prototype2.png" alt="v2_prototype2.png"></v-img>
+                    </a>
                 </v-col>
             </v-row>
         </v-container>
