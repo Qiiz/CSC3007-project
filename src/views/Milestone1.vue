@@ -220,7 +220,7 @@
                         we have decided to utilise the old school method of the sunburst to better help readers understand the information better.
                         Especially when it comes to the comparison of monies, a sunburst could prove to provide better visualisation.
                         Since there is so much more information to visualise,
-                        our team has decided to make an explosive sunburst with user interactive ability to filter with the different sectors they are interested in and their data representation.
+                        our team has decided to make a sunburst with user interactive ability to filter with the different sectors they are interested in and their data representation.
                         The general overview alone could help provide a comparison of incomes and expenditures as a whole and could easily determine any deficits if any.
                     </p>
 
