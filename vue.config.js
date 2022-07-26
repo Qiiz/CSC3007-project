@@ -7,5 +7,8 @@ module.exports = defineConfig({
   outputDir: 'docs',
   pwa: {
     name: 'CSC3007 Project'
+  },
+  configureWebpack: {
+    devtool: "source-map"
   }
 })
