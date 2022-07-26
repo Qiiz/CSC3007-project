@@ -126,9 +126,9 @@ export default class Milestone2 extends Vue
     async mounted()
     {
         this.d3Loaded = false
-        const margin = { top: 50, right: 60, bottom: 50, left: 60 },
+        const margin = { top: 10, right: 60, bottom: 50, left: 60 },
             width = 1280 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            height = 480 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
         const svg = d3.select("#scatter-plot-container > svg")
