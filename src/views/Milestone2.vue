@@ -21,27 +21,27 @@
         <div id="scatter-plot-container">
             <svg>
                 <g v-if="d3Loaded">
-                    <g v-for="item in filteredData" :key="`${item.caffeine} ${item.calories}`"
+                    <g v-for="item in filteredData" :key="`${item.name}`"
                         :style="`opacity: ${focusInMind(item) ? 1 : 0.1}`">
                         <rect
-                            :x="scalerX(item.caffeine)"
-                            :y="scalerY(item.calories)"
+                            :x="scalerClippedX(item.calories)"
+                            :y="scalerY(clipY(item.caffeine))"
                             :rx="8" :ry="8" :width="iconSize" :height="iconSize"
                             :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
                             :style="`fill: grey; opacity: 0.5; stroke: black; stroke-width: 1`" />
                         <image :href="item.icon"
-                            :x="scalerX(item.caffeine)"
-                            :y="scalerY(item.calories)"
+                            :x="scalerClippedX(item.calories)"
+                            :y="scalerY(clipY(item.caffeine))"
                             :width="iconSize - iconPadding"
                             :height="iconSize - iconPadding"
                             :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
                         <text
-                            :key="`${item.caffeine} ${item.calories}`"
+                            :key="`${item.name}`"
                             dominant-baseline="middle"
                             text-anchor="middle"
                             :font-size="`${iconFontSize}px`"
-                            :x="scalerX(item.caffeine)"
-                            :y="scalerY(item.calories - iconSize)">
+                            :x="scalerClippedX(item.calories)"
+                            :y="scalerY(clipY(item.caffeine) - iconSize / 2)">
                             {{ item.name }}
                         </text>
                     </g>
@@ -103,7 +103,7 @@ export default class Milestone2 extends Vue
     public iconPadding = 16
     public iconFontSize = 10
 
-    public scalerX!: d3.ScaleLinear<number, number, never>
+    public scalerClippedX!: (x: number) => number
     public scalerY!: d3.ScaleLinear<number, number, never>
 
     public get filteredData()
@@ -123,6 +123,11 @@ export default class Milestone2 extends Vue
         return !!this.inMind.find(x => x === item.name) 
     }
 
+    public clipY(value: number)
+    {
+        return value < 30 ? 30 : value
+    }
+
     async mounted()
     {
         this.d3Loaded = false
@@ -134,21 +139,29 @@ export default class Milestone2 extends Vue
         const svg = d3.select("#scatter-plot-container > svg")
             .attr("viewBox", [-margin.left, -margin.top, width + margin.left + margin.right, height + margin.top + margin.bottom])
 
-
         // Add X axis
-        this.scalerX = d3.scaleLinear()
-            .domain([0, 300])
+        const x = d3.scaleLinear()
+            .domain([0, 450])
             .range([0, width]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(this.scalerX));
+            .call(d3.axisBottom(x));
 
         // Add Y axis
-        this.scalerY = d3.scaleLinear()
-            .domain([0, 600])
+        const y = d3.scaleLinear()
+            .domain([0, 300])
             .range([height, 0]);
         svg.append("g")
-            .call(d3.axisLeft(this.scalerY));
+            .call(d3.axisLeft(y));
+
+        this.scalerClippedX = (value: d3.NumberValue) =>
+        {
+            const out = x(value)
+            const clip = this.iconSize / 2
+            return out < clip ? clip : out
+        }
+
+        this.scalerY = y
 
         svg.append("text")
             .attr("class", "x label")
@@ -156,7 +169,7 @@ export default class Milestone2 extends Vue
             .attr("x", width)
             .attr("y", height)
             .attr("dy", "2em")
-            .text("Caffeine Intake")
+            .text("Calories Intake")
 
         svg.append("text")
             .attr("class", "y label")
@@ -164,7 +177,7 @@ export default class Milestone2 extends Vue
             .attr("y", 0)
             .attr("dy", "-2em")
             .attr("transform", "rotate(-90)")
-            .text("Calories Intake");
+            .text("Caffeine Intake");
 
         this.d3Loaded = true
     }
