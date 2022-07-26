@@ -117,10 +117,11 @@ export default class Milestone2 extends Vue
 
     public focusInMind(item: Beverage)
     {
-        if (this.inMind.length == 0) {
+        if (this.inMind.length == 0)
+        {
             return true
         }
-        return !!this.inMind.find(x => x === item.name) 
+        return !!this.inMind.find(x => x === item.name)
     }
 
     public clipY(value: number)
