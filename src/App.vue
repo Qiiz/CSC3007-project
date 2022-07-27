@@ -4,15 +4,13 @@
             <v-toolbar color="dark" dark flat>
                 <v-toolbar-title>CSC3007 Project</v-toolbar-title>
 
-                <v-spacer></v-spacer>
-
                 <template v-slot:extension>
                     <v-tabs v-model="tab" align-with-title>
                         <v-tabs-slider color="white"></v-tabs-slider>
 
-                        <v-tab to="/">Milestone 1</v-tab>
-                        <v-tab to="/milestone2">Milestone 2 Dashboard</v-tab>
+                        <v-tab to="/">Milestone 1 Doc</v-tab>
                         <v-tab to="/milestone2_doc">Milestone 2 Doc</v-tab>
+                        <v-tab to="/milestone2">Milestone 2 Dashboard</v-tab>
                         <v-tab to="/about">About</v-tab>
                     </v-tabs>
                 </template>

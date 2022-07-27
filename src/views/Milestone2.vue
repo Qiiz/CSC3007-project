@@ -108,7 +108,7 @@
             </svg>
         </div>
         <v-row>
-            <v-col col="12" sm="6">
+            <v-col cols="12" sm="6">
                 <v-slider v-if="trackingMode"
                     v-model="targetGoal"
                     max="500"
@@ -119,7 +119,7 @@
                     hint="Slide to target recommended exercises">
                 </v-slider>
             </v-col>
-            <v-col col="12" sm="6">
+            <v-col cols="12" sm="6">
                 <v-autocomplete
                     v-model="inMind"
                     chips
