@@ -21,27 +21,49 @@
         <div id="scatter-plot-container">
             <svg>
                 <g v-if="d3Loaded">
-                    <g v-for="item in filteredData" :key="`${item.name}`"
-                        :style="`opacity: ${focusInMind(item) ? 1 : 0.1}`">
+                    <g v-for="item in filteredExercise" :key="`${item.name}`">
+                        <text
+                            dominant-baseline="middle"
+                            text-anchor="middle"
+                            :font-size="`64px`"
+                            :style="`font-weight: 1000; opacity: 0.5`"
+                            :x="scalerClippedX(item.position)"
+                            :y="scalerY(280)">
+                            30 Mins
+                        </text>
+
+                        <image :href="item.icon"
+                            :x="scalerClippedX(item.position)"
+                            :y="scalerY(200)"
+                            :width="100"
+                            :height="100"
+                            :style="`opacity: 0.5`"
+                            :transform="`translate(-${100 / 2} -${100 / 2})`" />
+                    </g>
+                    <g v-for="item in filteredBeverages" :key="`${item.name}`"
+                        :style="`opacity: ${focusInMind(item) ? 1 : 0.1}`"
+                        @mouseover="onHover(item)" @mouseleave="onLeave(item)">
                         <rect
                             :x="scalerClippedX(item.calories)"
                             :y="scalerY(clipY(item.caffeine))"
-                            :rx="8" :ry="8" :width="iconSize" :height="iconSize"
+                            :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
                             :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
-                            :style="`fill: grey; opacity: 0.5; stroke: black; stroke-width: 1`" />
+                            :style="`fill: LightGray; opacity: 1; stroke: grey; stroke-width: 1`" />
                         <image :href="item.icon"
                             :x="scalerClippedX(item.calories)"
                             :y="scalerY(clipY(item.caffeine))"
                             :width="iconSize - iconPadding"
                             :height="iconSize - iconPadding"
                             :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
-                        <text
-                            :key="`${item.name}`"
+                    </g>
+                    <g v-for="item in filteredBeverages" :key="`${item.name}_text`">
+                        <text v-if="hoveringBeverage.find(x => x.name === item.name) || (inMind.length > 0 && focusInMind(item))"
                             dominant-baseline="middle"
                             text-anchor="middle"
                             :font-size="`${iconFontSize}px`"
+                            :style="`font-weight: 1000; background-color:white;`"
                             :x="scalerClippedX(item.calories)"
-                            :y="scalerY(clipY(item.caffeine) - iconSize / 2)">
+                            :y="scalerY(clipY(item.caffeine) - iconSize / 1.5)">
                             {{ item.name }}
                         </text>
                     </g>
@@ -71,7 +93,7 @@
                     rounded
                     small-chips
                     solo
-                    :items="data.map(x => x.name).sort()"
+                    :items="beverageData.map(x => x.name).sort()"
                     label="Have a beverage in mind?">
                 </v-autocomplete>
             </v-col>
@@ -84,6 +106,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import * as d3 from 'd3'
 
 import { Beverage, Beverages } from '../data/Beverages'
+import { Exercise, Exercises } from '../data/Exercises'
 
 @Component({
     components: {
@@ -94,39 +117,90 @@ export default class Milestone2 extends Vue
 {
     public trackingMode = false
     public targetGoal = 100
-    public inMind = []
+    public inMind: string[] = []
 
-    public data = Beverages
+    public beverageData = Beverages
+    public exerciseData = Exercises
 
     public d3Loaded = false;
-    public iconSize = 48
-    public iconPadding = 16
-    public iconFontSize = 10
+    public iconSize = 24
+    public iconPadding = 8
+    public iconFontSize = 16
 
     public scalerClippedX!: (x: number) => number
     public scalerY!: d3.ScaleLinear<number, number, never>
 
-    public get filteredData()
+    public hoveringBeverage: Beverage[] = []
+
+    public get filteredBeverages()
     {
         if (!this.trackingMode)
         {
-            return this.data
+            return this.beverageData
         }
-        return this.data.filter(x => x.calories <= this.targetGoal)
+        return this.beverageData.filter(x => x.calories <= this.targetGoal)
+    }
+
+    public get filteredExercise()
+    {
+        if (!this.trackingMode)
+        {
+            return this.exerciseData
+        }
+
+        return this.exerciseData.filter((x, i) =>
+        {
+            if (i == 0)
+            {
+                return true
+            }
+            if (this.exerciseData[i - 1].calories < this.targetGoal)
+            {
+                return true
+            }
+            else
+            {
+                return false
+            }
+        })
     }
 
     public focusInMind(item: Beverage)
     {
-        if (this.inMind.length == 0)
+        if (this.hoveringBeverage.length > 0)
         {
-            return true
+            let hover = this.hoveringBeverage.includes(item)
+            if (this.inMind.length == 0)
+            {
+                return hover
+            }
+            return hover || this.inMind.includes(item.name)
         }
-        return !!this.inMind.find(x => x === item.name)
+        else
+        {
+            if (this.inMind.length == 0)
+            {
+                return true
+            }
+            return this.inMind.includes(item.name)
+        }
+
     }
 
     public clipY(value: number)
     {
         return value < 30 ? 30 : value
+    }
+
+    onHover(item: Beverage)
+    {
+        // console.log("hover", item.name)
+        this.hoveringBeverage.push(item)
+    }
+
+    onLeave(item: Beverage)
+    {
+        this.hoveringBeverage = []
     }
 
     async mounted()

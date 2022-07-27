@@ -14,13 +14,13 @@ export const Beverages: Beverage[] = [
         "icon": "./img/beverages/tea.png",
         "category": "TEA"
     },
-    {
-        "name": "Pepsi One",
-        "calories": 1,
-        "caffeine": 55,
-        "icon": "./img/beverages/soft-drinks.png",
-        "category": "SOFT DRINK"
-    },
+    // {
+    //     "name": "Pepsi One",
+    //     "calories": 1,
+    //     "caffeine": 55,
+    //     "icon": "./img/beverages/soft-drinks.png",
+    //     "category": "SOFT DRINK"
+    // },
     {
         "name": "Earl Grey",
         "calories": 2,
@@ -28,13 +28,13 @@ export const Beverages: Beverage[] = [
         "icon": "./img/beverages/tea.png",
         "category": "TEA"
     },
-    {
-        "name": "Instant Coffee",
-        "calories": 4,
-        "caffeine": 47,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
+    // {
+    //     "name": "Instant Coffee",
+    //     "calories": 4,
+    //     "caffeine": 47,
+    //     "icon": "./img/beverages/coffee-beans.png",
+    //     "category": "COFFEE"
+    // },
     {
         "name": "Decaf espresso",
         "calories": 5,
@@ -50,18 +50,18 @@ export const Beverages: Beverage[] = [
         "category": "COFFEE"
     },
     {
-        "name": "Yerba Mate",
-        "calories": 5,
-        "caffeine": 85,
-        "icon": "./img/beverages/tea.png",
-        "category": "TEA"
-    },
-    {
         "name": "Dark Roast",
         "calories": 5,
         "caffeine": 260,
         "icon": "./img/beverages/coffee-beans.png",
         "category": "COFFEE"
+    },
+    {
+        "name": "Yerba Mate",
+        "calories": 5,
+        "caffeine": 85,
+        "icon": "./img/beverages/tea.png",
+        "category": "TEA"
     },
     {
         "name": "Double Espresso",
@@ -70,22 +70,15 @@ export const Beverages: Beverage[] = [
         "icon": "./img/beverages/coffee-beans.png",
         "category": "COFFEE"
     },
-    {
-        "name": "Espresso Machiato ",
-        "calories": 9,
-        "caffeine": 65,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
+    // {
+    //     "name": "Espresso Machiato ",
+    //     "calories": 9,
+    //     "caffeine": 65,
+    //     "icon": "./img/beverages/coffee-beans.png",
+    //     "category": "COFFEE"
+    // },
     {
         "name": "Americano",
-        "calories": 15,
-        "caffeine": 225,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
-        "name": "Iced Americano",
         "calories": 15,
         "caffeine": 225,
         "icon": "./img/beverages/coffee-beans.png",
@@ -113,13 +106,6 @@ export const Beverages: Beverage[] = [
         "category": "COFFEE"
     },
     {
-        "name": "English Breakfast + 1 sugar",
-        "calories": 39,
-        "caffeine": 26,
-        "icon": "./img/beverages/tea.png",
-        "category": "TEA"
-    },
-    {
         "name": "Marocchino ",
         "calories": 43,
         "caffeine": 90,
@@ -141,23 +127,9 @@ export const Beverages: Beverage[] = [
         "category": "SOFT DRINK"
     },
     {
-        "name": "English Breakfast + 2 sugars",
-        "calories": 55,
-        "caffeine": 26,
-        "icon": "./img/beverages/tea.png",
-        "category": "TEA"
-    },
-    {
         "name": "Marocchino Bicolore ",
         "calories": 55,
         "caffeine": 75,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
-        "name": "Instant Coffee + 2 sugars",
-        "calories": 83,
-        "caffeine": 47,
         "icon": "./img/beverages/coffee-beans.png",
         "category": "COFFEE"
     },
@@ -179,13 +151,6 @@ export const Beverages: Beverage[] = [
         "name": "Café Crème",
         "calories": 106,
         "caffeine": 225,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
-        "name": "Estivo ",
-        "calories": 120,
-        "caffeine": 150,
         "icon": "./img/beverages/coffee-beans.png",
         "category": "COFFEE"
     },
@@ -253,13 +218,6 @@ export const Beverages: Beverage[] = [
         "category": "COFFEE"
     },
     {
-        "name": "Mocha (small)",
-        "calories": 220,
-        "caffeine": 195,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
         "name": "Green Tea Latte ",
         "calories": 240,
         "caffeine": 80,
@@ -316,13 +274,6 @@ export const Beverages: Beverage[] = [
         "category": "COFFEE"
     },
     {
-        "name": "Caramel Frappuccino (med)",
-        "calories": 280,
-        "caffeine": 100,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
         "name": "Mountain Dew",
         "calories": 290,
         "caffeine": 91,
@@ -358,13 +309,6 @@ export const Beverages: Beverage[] = [
         "category": "COFFEE"
     },
     {
-        "name": "Caramel Frappuccino (lrg)",
-        "calories": 410,
-        "caffeine": 100,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
         "name": "Frappuccino ",
         "calories": 410,
         "caffeine": 110,
@@ -396,13 +340,6 @@ export const Beverages: Beverage[] = [
         "name": "White Mocha ",
         "calories": 430,
         "caffeine": 65,
-        "icon": "./img/beverages/coffee-beans.png",
-        "category": "COFFEE"
-    },
-    {
-        "name": "Mocha (big)",
-        "calories": 430,
-        "caffeine": 150,
         "icon": "./img/beverages/coffee-beans.png",
         "category": "COFFEE"
     }

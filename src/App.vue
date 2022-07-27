@@ -11,7 +11,8 @@
                         <v-tabs-slider color="white"></v-tabs-slider>
 
                         <v-tab to="/">Milestone 1</v-tab>
-                        <v-tab to="/milestone2">Milestone 2</v-tab>
+                        <v-tab to="/milestone2">Milestone 2 Dashboard</v-tab>
+                        <v-tab to="/milestone2_doc">Milestone 2 Doc</v-tab>
                         <v-tab to="/about">About</v-tab>
                     </v-tabs>
                 </template>

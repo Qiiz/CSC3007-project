@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Milestone1 from '../views/Milestone1.vue'
 import Milestone2 from '../views/Milestone2.vue'
+import Milestone2Doc from '../views/Milestone2Doc.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes: Array<RouteConfig> = [
     path: '/milestone2',
     name: 'Milestone 2',
     component: Milestone2
+  },
+  {
+    path: '/milestone2_doc',
+    name: 'Milestone 2 Doc',
+    component: Milestone2Doc
   },
   {
     path: '/about',
