@@ -61,10 +61,47 @@
                             dominant-baseline="middle"
                             text-anchor="middle"
                             :font-size="`${iconFontSize}px`"
-                            :style="`font-weight: 1000; background-color:white;`"
+                            :style="`font-weight: 1000;`"
                             :x="scalerClippedX(item.calories)"
                             :y="scalerY(clipY(item.caffeine) - iconSize / 1.5)">
                             {{ item.name }}
+                        </text>
+                    </g>
+
+                    <g v-if="hoveringBeverage.length > 0">
+                        <rect
+                            :x="scalerClippedX(hoveringBeverage[0].calories)"
+                            :y="scalerY(0)"
+                            :rx="4" :ry="4" :width="24" :height="16"
+                            :transform="`translate(${-24 / 2},  ${0})`"
+                            :style="`fill: black; opacity: 1;`" />
+
+                        <text
+                            :x="scalerClippedX(hoveringBeverage[0].calories)"
+                            :y="scalerY(0)"
+                            dominant-baseline="middle"
+                            text-anchor="middle"
+                            :transform="`translate(${0},  ${8})`"
+                            :font-size="`9px`"
+                            :style="`fill:white;`">
+                            {{ hoveringBeverage[0].calories }}
+                        </text>
+
+                        <rect
+                            :x="scalerClippedX(0)"
+                            :y="scalerY(hoveringBeverage[0].caffeine)"
+                            :rx="4" :ry="4" :width="24" :height="16"
+                            :transform="`translate(${-24 * 1.5},  ${-8})`"
+                            :style="`fill: black; opacity: 1;`" />
+                        <text
+                            :x="scalerClippedX(0)"
+                            :y="scalerY(hoveringBeverage[0].caffeine)"
+                            dominant-baseline="middle"
+                            text-anchor="middle"
+                            :transform="`translate(${-24},  ${0})`"
+                            :font-size="`9px`"
+                            :style="`fill:white;`">
+                            {{ hoveringBeverage[0].caffeine }}
                         </text>
                     </g>
                 </g>
