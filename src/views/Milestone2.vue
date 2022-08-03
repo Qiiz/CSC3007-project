@@ -47,8 +47,8 @@
                     </g>
                     <!-- Beverages -->
                     <g v-for="item in filteredBeverages" :key="`${item.name}`"
-                        :style="`opacity: ${focusInMind(item) ? 1 : 0.1}`"
-                        :transform="`translate(${scalerClippedX(item.calories)} ${scalerY(clipY(item.caffeine))}) scale(${(hoveringBeverage.find(x => x.name === item.name) || (inMind.length > 0 && focusInMind(item))) ? 1.5 : 1})`"
+                        :style="`opacity: ${(hoverBeverage !== null ? hoverBeverage === item : focusInMind(item)) ? 1 : 0.1}`"
+                        :transform="`translate(${scalerClippedX(item.calories)} ${scalerY(clipY(item.caffeine))}) scale(${(hoverBeverage === item || (inMind.length > 0 && focusInMind(item))) ? 1.5 : 1})`"
                         @mouseover="onHover(item)" @mouseleave="onLeave(item)">
                         <rect
                             :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
@@ -58,7 +58,7 @@
                             :width="iconSize - iconPadding"
                             :height="iconSize - iconPadding"
                             :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
-                        <text v-if="hoveringBeverage.find(x => x.name === item.name) || (inMind.length > 0 && focusInMind(item))"
+                        <text v-if="hoverBeverage === item || (inMind.length > 0 && focusInMind(item))"
                             :y="(iconSize)"
                             dominant-baseline="middle"
                             text-anchor="middle"
@@ -69,41 +69,41 @@
                     </g>
 
                     <!-- Focus Crosshair label -->
-                    <g v-if="hoveringBeverage.length > 0">
+                    <g v-if="hoverBeverage !== null">
                         <!-- x axis  -->
                         <rect
-                            :x="scalerClippedX(hoveringBeverage[0].calories)"
+                            :x="scalerClippedX(hoverBeverage.calories)"
                             :y="scalerY(0)"
                             :rx="4" :ry="4" :width="24" :height="16"
                             :transform="`translate(${-24 / 2},  ${0})`"
                             :style="`fill: black; opacity: 1;`" />
 
                         <text
-                            :x="scalerClippedX(hoveringBeverage[0].calories)"
+                            :x="scalerClippedX(hoverBeverage.calories)"
                             :y="scalerY(0)"
                             dominant-baseline="middle"
                             text-anchor="middle"
                             :transform="`translate(${0},  ${8})`"
                             :font-size="`9px`"
                             :style="`fill:white;`">
-                            {{ hoveringBeverage[0].calories }}
+                            {{ hoverBeverage.calories }}
                         </text>
                         <!-- y axis -->
                         <rect
                             :x="scalerClippedX(0)"
-                            :y="scalerY(hoveringBeverage[0].caffeine)"
+                            :y="scalerY(hoverBeverage.caffeine)"
                             :rx="4" :ry="4" :width="24" :height="16"
                             :transform="`translate(${-24 * 1.5},  ${-8})`"
                             :style="`fill: black; opacity: 1;`" />
                         <text
                             :x="scalerClippedX(0)"
-                            :y="scalerY(hoveringBeverage[0].caffeine)"
+                            :y="scalerY(hoverBeverage.caffeine)"
                             dominant-baseline="middle"
                             text-anchor="middle"
                             :transform="`translate(${-24},  ${0})`"
                             :font-size="`9px`"
                             :style="`fill:white;`">
-                            {{ hoveringBeverage[0].caffeine }}
+                            {{ hoverBeverage.caffeine }}
                         </text>
                     </g>
                 </g>
@@ -169,8 +169,9 @@ export default class Milestone2 extends Vue
     public scalerX: d3.ScaleLinear<number, number, never>;
     public scalerY: d3.ScaleLinear<number, number, never>
 
-    public hoveringBeverage: Beverage[] = []
     public svgProperties: { margin: { top: number; right: number; bottom: number; left: number; }; width: number; height: number; };
+
+    public hoverBeverage: Beverage | null = null
 
     constructor()
     {
@@ -240,14 +241,14 @@ export default class Milestone2 extends Vue
 
     public focusInMind(item: Beverage)
     {
-        if (this.hoveringBeverage.length > 0)
+        if (this.hoverBeverage !== null)
         {
-            let hover = this.hoveringBeverage.includes(item)
+            const output = item === this.hoverBeverage
             if (this.inMind.length == 0)
             {
-                return hover
+                return output
             }
-            return hover || this.inMind.includes(item.name)
+            return output || this.inMind.includes(item.name)
         }
         else
         {
@@ -267,13 +268,12 @@ export default class Milestone2 extends Vue
 
     onHover(item: Beverage)
     {
-        // console.log("hover", item.name)
-        this.hoveringBeverage.push(item)
+        this.hoverBeverage = item
     }
 
     onLeave(item: Beverage)
     {
-        this.hoveringBeverage = []
+        this.hoverBeverage = null
     }
 
     created()
