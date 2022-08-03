@@ -29,17 +29,20 @@
                 </g>
                 <!-- Beverages -->
                 <g v-for="item in filteredBeverages" :key="`${item.name}`"
-                    :style="`opacity: ${(hoverBeverage !== null ? hoverBeverage === item : focusBeverageInMind(item)) ? 1 : 0.1}`"
                     :transform="`translate(${scalerClippedX(item.calories)} ${scalerY(clipY(item.caffeine))}) scale(${(hoverBeverage === item || (beverageInMind.length > 0 && focusBeverageInMind(item))) ? 1.5 : 1})`"
-                    @mouseover="onHoverOnBeverage(item)" @mouseleave="onHoverLeaveBeverage(item)" @click="onClickBeverage(item)">
-                    <rect
-                        :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
-                        :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
-                        :style="`fill: LightGray; opacity: 1; stroke: grey; stroke-width: 1`" />
-                    <image :href="item.icon"
-                        :width="iconSize - iconPadding"
-                        :height="iconSize - iconPadding"
-                        :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
+                    :opacity="`${(hoverBeverage !== null ? hoverBeverage === item : focusBeverageInMind(item)) ? 1 : 0.1}`"
+                    @mouseover="onHoverOnBeverage(item)" @mouseleave="onHoverLeaveBeverage(item)">
+                    <g @click="onClickBeverage(item)">
+                        <rect
+                            :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
+                            :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
+                            :style="`fill: LightGray; opacity: 1; stroke: grey; stroke-width: 1`" />
+                        <image :href="item.icon"
+                            :width="iconSize - iconPadding"
+                            :height="iconSize - iconPadding"
+                            :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
+                    </g>
+
                     <text v-if="hoverBeverage === item || (beverageInMind.length > 0 && focusBeverageInMind(item))"
                         :y="(iconSize)"
                         dominant-baseline="middle"
