@@ -3,6 +3,7 @@
         <svg :viewBox="[-svgProperties.margin.left, -svgProperties.margin.top, svgProperties.width + svgProperties.margin.left + svgProperties.margin.right, svgProperties.height + svgProperties.margin.top + svgProperties.margin.bottom]">
             <g id="scatter-plot-axis" @click="onUnclickBeverage()"></g>
             <g>
+                <!-- Exercise -->
                 <g v-for="item in filteredExercise" :key="`${item.name}`" @click="onUnclickBeverage()">
                     <rect
                         :width="svgProperties.width"
@@ -42,7 +43,7 @@
                             :height="iconSize - iconPadding"
                             :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
                     </g>
-
+                    <!-- Label -->
                     <text v-if="hoverBeverage === item || (beverageInMind.length > 0 && focusBeverageInMind(item))"
                         :y="(iconSize)"
                         dominant-baseline="middle"
@@ -122,7 +123,7 @@ export default class BeveragePlot extends Vue
 
     public iconSize = 24
     public iconPadding = 8
-    public iconFontSize = 16
+    public iconFontSize = 14
 
     public scalerClippedX!: (x: number) => number
     public scalerX: d3.ScaleLinear<number, number, never>;
