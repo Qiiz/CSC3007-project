@@ -1,0 +1,55 @@
+diff --git a/src/views/Milestone2.vue b/src/views/Milestone2.vue
+index d7ae0e1..ca2e0c8 100644
+--- a/src/views/Milestone2.vue
++++ b/src/views/Milestone2.vue
+@@ -45,35 +45,32 @@
+                             :style="`opacity: 0.5`"
+                             :transform="`translate(-${100 / 2} -${100 / 2})`" />
+                     </g>
++                    <!-- Beverages -->
+                     <g v-for="item in filteredBeverages" :key="`${item.name}`"
+                         :style="`opacity: ${focusInMind(item) ? 1 : 0.1}`"
++                        :transform="`translate(${scalerClippedX(item.calories)} ${scalerY(clipY(item.caffeine))}) scale(${(hoveringBeverage.find(x => x.name === item.name) || (inMind.length > 0 && focusInMind(item))) ? 1.5 : 1})`"
+                         @mouseover="onHover(item)" @mouseleave="onLeave(item)">
+                         <rect
+-                            :x="scalerClippedX(item.calories)"
+-                            :y="scalerY(clipY(item.caffeine))"
+                             :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
+                             :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
+                             :style="`fill: LightGray; opacity: 1; stroke: grey; stroke-width: 1`" />
+                         <image :href="item.icon"
+-                            :x="scalerClippedX(item.calories)"
+-                            :y="scalerY(clipY(item.caffeine))"
+                             :width="iconSize - iconPadding"
+                             :height="iconSize - iconPadding"
+                             :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
+-                    </g>
+-                    <g v-for="item in filteredBeverages" :key="`${item.name}_text`">
+                         <text v-if="hoveringBeverage.find(x => x.name === item.name) || (inMind.length > 0 && focusInMind(item))"
++                            :y="(iconSize)"
+                             dominant-baseline="middle"
+                             text-anchor="middle"
+                             :font-size="`${iconFontSize}px`"
+-                            :style="`font-weight: 1000;`"
+-                            :x="scalerClippedX(item.calories)"
+-                            :y="scalerY(clipY(item.caffeine) - iconSize / 1.5)">
++                            :style="`font-weight: 1000;`">
+                             {{ item.name }}
+                         </text>
+                     </g>
+ 
++                    <!-- Focus Crosshair label -->
+                     <g v-if="hoveringBeverage.length > 0">
++                        <!-- x axis  -->
+                         <rect
+                             :x="scalerClippedX(hoveringBeverage[0].calories)"
+                             :y="scalerY(0)"
+@@ -91,7 +88,7 @@
+                             :style="`fill:white;`">
+                             {{ hoveringBeverage[0].calories }}
+                         </text>
+-
++                        <!-- y axis -->
+                         <rect
+                             :x="scalerClippedX(0)"
+                             :y="scalerY(hoveringBeverage[0].caffeine)"
