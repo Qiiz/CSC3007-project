@@ -24,14 +24,19 @@
             -svgProperties.margin.top,
             svgProperties.width + svgProperties.margin.left + svgProperties.margin.right,
             svgProperties.height + svgProperties.margin.top + svgProperties.margin.bottom]">
-                <g id="scatter-plot-axis"></g>
+                <g id="scatter-plot-axis" @click="onUnclickBeverage()"></g>
                 <g>
-                    <g v-for="item in filteredExercise" :key="`${item.name}`">
+                    <g v-for="item in filteredExercise" :key="`${item.name}`" @click="onUnclickBeverage()">
+                        <rect
+                            :width="svgProperties.width"
+                            :height="svgProperties.height"
+                            opacity="0" />
                         <text
                             dominant-baseline="middle"
                             text-anchor="middle"
+                            opacity="0.5"
                             :font-size="`64px`"
-                            :style="`font-weight: 1000; opacity: 0.5`"
+                            :style="`font-weight: 1000`"
                             :x="scalerClippedX(item.position)"
                             :y="scalerY(280)">
                             30 Mins
@@ -47,9 +52,9 @@
                     </g>
                     <!-- Beverages -->
                     <g v-for="item in filteredBeverages" :key="`${item.name}`"
-                        :style="`opacity: ${(hoverBeverage !== null ? hoverBeverage === item : focusInMind(item)) ? 1 : 0.1}`"
-                        :transform="`translate(${scalerClippedX(item.calories)} ${scalerY(clipY(item.caffeine))}) scale(${(hoverBeverage === item || (inMind.length > 0 && focusInMind(item))) ? 1.5 : 1})`"
-                        @mouseover="onHover(item)" @mouseleave="onLeave(item)">
+                        :style="`opacity: ${(hoverBeverage !== null ? hoverBeverage === item : focusBeverageInMind(item)) ? 1 : 0.1}`"
+                        :transform="`translate(${scalerClippedX(item.calories)} ${scalerY(clipY(item.caffeine))}) scale(${(hoverBeverage === item || (beverageInMind.length > 0 && focusBeverageInMind(item))) ? 1.5 : 1})`"
+                        @mouseover="onHoverOnBeverage(item)" @mouseleave="onHoverLeaveBeverage(item)" @click="onClickBeverage(item)">
                         <rect
                             :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
                             :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
@@ -58,7 +63,7 @@
                             :width="iconSize - iconPadding"
                             :height="iconSize - iconPadding"
                             :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
-                        <text v-if="hoverBeverage === item || (inMind.length > 0 && focusInMind(item))"
+                        <text v-if="hoverBeverage === item || (beverageInMind.length > 0 && focusBeverageInMind(item))"
                             :y="(iconSize)"
                             dominant-baseline="middle"
                             text-anchor="middle"
@@ -123,7 +128,7 @@
             </v-col>
             <v-col cols="12" sm="6">
                 <v-autocomplete
-                    v-model="inMind"
+                    v-model="beverageInMind"
                     chips
                     clearable
                     dense
@@ -156,7 +161,7 @@ export default class Milestone2 extends Vue
 {
     public trackingMode = false
     public targetGoal = 100
-    public inMind: string[] = []
+    public beverageInMind: string[] = []
 
     public beverageData = Beverages
     public exerciseData = Exercises
@@ -172,6 +177,7 @@ export default class Milestone2 extends Vue
     public svgProperties: { margin: { top: number; right: number; bottom: number; left: number; }; width: number; height: number; };
 
     public hoverBeverage: Beverage | null = null
+    public clickBeverage: Beverage | null = null
 
     constructor()
     {
@@ -187,7 +193,7 @@ export default class Milestone2 extends Vue
         }
 
         // append the svg object to the body of the page
-        
+
         // .attr("viewBox", [-margin.left, -margin.top, width + margin.left + margin.right, height + margin.top + margin.bottom])
 
         this.scalerX = d3.scaleLinear()
@@ -239,24 +245,24 @@ export default class Milestone2 extends Vue
         })
     }
 
-    public focusInMind(item: Beverage)
+    public focusBeverageInMind(item: Beverage)
     {
         if (this.hoverBeverage !== null)
         {
             const output = item === this.hoverBeverage
-            if (this.inMind.length == 0)
+            if (this.beverageInMind.length == 0)
             {
                 return output
             }
-            return output || this.inMind.includes(item.name)
+            return output || this.beverageInMind.includes(item.name)
         }
         else
         {
-            if (this.inMind.length == 0)
+            if (this.beverageInMind.length == 0)
             {
                 return true
             }
-            return this.inMind.includes(item.name)
+            return this.beverageInMind.includes(item.name)
         }
 
     }
@@ -266,14 +272,38 @@ export default class Milestone2 extends Vue
         return value < 30 ? 30 : value
     }
 
-    onHover(item: Beverage)
+    onHoverOnBeverage(item: Beverage)
     {
+        if (this.clickBeverage !== null)
+        {
+            return
+        }
         this.hoverBeverage = item
     }
 
-    onLeave(item: Beverage)
+    onHoverLeaveBeverage(item: Beverage)
+    {
+        if (this.clickBeverage !== null)
+        {
+            return
+        }
+        this.hoverBeverage = null
+    }
+
+    onClickBeverage(item: Beverage)
+    {
+        if (this.clickBeverage === item) {
+            this.onUnclickBeverage()
+            return
+        }
+        this.hoverBeverage = item
+        this.clickBeverage = item
+    }
+
+    onUnclickBeverage()
     {
         this.hoverBeverage = null
+        this.clickBeverage = null
     }
 
     created()
