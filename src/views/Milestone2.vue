@@ -19,11 +19,7 @@
             </v-col>
         </v-row>
         <div id="scatter-plot-container">
-            <svg :viewBox="[
-            -svgProperties.margin.left,
-            -svgProperties.margin.top,
-            svgProperties.width + svgProperties.margin.left + svgProperties.margin.right,
-            svgProperties.height + svgProperties.margin.top + svgProperties.margin.bottom]">
+            <svg :viewBox="[-svgProperties.margin.left, -svgProperties.margin.top, svgProperties.width + svgProperties.margin.left + svgProperties.margin.right, svgProperties.height + svgProperties.margin.top + svgProperties.margin.bottom]">
                 <g id="scatter-plot-axis" @click="onUnclickBeverage()"></g>
                 <g>
                     <g v-for="item in filteredExercise" :key="`${item.name}`" @click="onUnclickBeverage()">
@@ -136,7 +132,9 @@
                     hide-selected
                     rounded
                     small-chips
+                    deletable-chips
                     solo
+                    :menu-props="{ closeOnContentClick: true }"
                     :items="beverageData.map(x => x.name).sort()"
                     label="Have a beverage in mind?">
                 </v-autocomplete>
@@ -292,7 +290,8 @@ export default class Milestone2 extends Vue
 
     onClickBeverage(item: Beverage)
     {
-        if (this.clickBeverage === item) {
+        if (this.clickBeverage === item)
+        {
             this.onUnclickBeverage()
             return
         }
