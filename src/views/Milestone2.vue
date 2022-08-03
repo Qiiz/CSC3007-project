@@ -19,8 +19,13 @@
             </v-col>
         </v-row>
         <div id="scatter-plot-container">
-            <svg>
-                <g v-if="d3Loaded">
+            <svg :viewBox="[
+            -svgProperties.margin.left,
+            -svgProperties.margin.top,
+            svgProperties.width + svgProperties.margin.left + svgProperties.margin.right,
+            svgProperties.height + svgProperties.margin.top + svgProperties.margin.bottom]">
+                <g id="scatter-plot-axis"></g>
+                <g>
                     <g v-for="item in filteredExercise" :key="`${item.name}`">
                         <text
                             dominant-baseline="middle"
@@ -159,15 +164,49 @@ export default class Milestone2 extends Vue
     public beverageData = Beverages
     public exerciseData = Exercises
 
-    public d3Loaded = false;
     public iconSize = 24
     public iconPadding = 8
     public iconFontSize = 16
 
     public scalerClippedX!: (x: number) => number
-    public scalerY!: d3.ScaleLinear<number, number, never>
+    public scalerX: d3.ScaleLinear<number, number, never>;
+    public scalerY: d3.ScaleLinear<number, number, never>
 
     public hoveringBeverage: Beverage[] = []
+    public svgProperties: { margin: { top: number; right: number; bottom: number; left: number; }; width: number; height: number; };
+
+    constructor()
+    {
+        super()
+        const margin = { top: 10, right: 60, bottom: 50, left: 60 },
+            width = 1280 - margin.left - margin.right,
+            height = 480 - margin.top - margin.bottom;
+
+        this.svgProperties = {
+            margin,
+            width,
+            height
+        }
+
+        // append the svg object to the body of the page
+        
+        // .attr("viewBox", [-margin.left, -margin.top, width + margin.left + margin.right, height + margin.top + margin.bottom])
+
+        this.scalerX = d3.scaleLinear()
+            .domain([0, 450])
+            .range([0, this.svgProperties.width]);
+
+        this.scalerY = d3.scaleLinear()
+            .domain([0, 300])
+            .range([this.svgProperties.height, 0]);
+
+        this.scalerClippedX = (value: d3.NumberValue) =>
+        {
+            const out = this.scalerX(value)
+            const clip = this.iconSize / 2
+            return out < clip ? clip : out
+        }
+    }
 
     public get filteredBeverages()
     {
@@ -240,58 +279,42 @@ export default class Milestone2 extends Vue
         this.hoveringBeverage = []
     }
 
+    created()
+    {
+        console.log("created Milestone2 Dashboard")
+    }
+
     async mounted()
     {
-        this.d3Loaded = false
-        const margin = { top: 10, right: 60, bottom: 50, left: 60 },
-            width = 1280 - margin.left - margin.right,
-            height = 480 - margin.top - margin.bottom;
+        console.log("mounted Milestone2 Dashboard")
 
-        // append the svg object to the body of the page
         const svg = d3.select("#scatter-plot-container > svg")
-            .attr("viewBox", [-margin.left, -margin.top, width + margin.left + margin.right, height + margin.top + margin.bottom])
+        const axisGroup = svg.select("#scatter-plot-axis")
 
         // Add X axis
-        const x = d3.scaleLinear()
-            .domain([0, 450])
-            .range([0, width]);
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+        axisGroup.append("g")
+            .attr("transform", "translate(0," + this.svgProperties.height + ")")
+            .call(d3.axisBottom(this.scalerX));
 
         // Add Y axis
-        const y = d3.scaleLinear()
-            .domain([0, 300])
-            .range([height, 0]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
+        axisGroup.append("g")
+            .call(d3.axisLeft(this.scalerY));
 
-        this.scalerClippedX = (value: d3.NumberValue) =>
-        {
-            const out = x(value)
-            const clip = this.iconSize / 2
-            return out < clip ? clip : out
-        }
-
-        this.scalerY = y
-
-        svg.append("text")
+        axisGroup.append("text")
             .attr("class", "x label")
             .attr("text-anchor", "end")
-            .attr("x", width)
-            .attr("y", height)
+            .attr("x", this.svgProperties.width)
+            .attr("y", this.svgProperties.height)
             .attr("dy", "2em")
             .text("Calories Intake")
 
-        svg.append("text")
+        axisGroup.append("text")
             .attr("class", "y label")
             .attr("text-anchor", "end")
             .attr("y", 0)
             .attr("dy", "-2em")
             .attr("transform", "rotate(-90)")
             .text("Caffeine Intake");
-
-        this.d3Loaded = true
     }
 }
 </script>
