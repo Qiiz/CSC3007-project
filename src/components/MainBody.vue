@@ -8,6 +8,7 @@
     @Component
     export default class MainBody extends Vue
     {
-        @Prop() private msg!: string;
+        @Prop()
+        public msg!: string;
     }
 </script>
