@@ -8,11 +8,11 @@
                     <rect
                         :width="svgProperties.width"
                         :height="svgProperties.height"
-                        opacity="0" />
+                        :opacity="0" />
                     <text
-                        dominant-baseline="middle"
-                        text-anchor="middle"
-                        opacity="0.5"
+                        :dominant-baseline="`middle`"
+                        :text-anchor="`middle`"
+                        :opacity="0.5"
                         :font-size="`64px`"
                         :style="`font-weight: 1000`"
                         :x="scalerClippedX(item.position)"
@@ -21,12 +21,11 @@
                     </text>
 
                     <image :href="item.icon"
-                        :x="scalerClippedX(item.position)"
-                        :y="scalerY(200)"
+                        :x="scalerClippedX(item.position) - (100 / 2)"
+                        :y="scalerY(200) - (100 / 2)"
                         :width="100"
                         :height="100"
-                        :style="`opacity: 0.5`"
-                        :transform="`translate(-${100 / 2} -${100 / 2})`" />
+                        :opacity="0.5" />
                 </g>
                 <!-- Beverages -->
                 <g v-for="item in filteredBeverages" :key="`${item.name}`"
@@ -35,19 +34,27 @@
                     @mouseover="onHoverOnBeverage(item)" @mouseleave="onHoverLeaveBeverage(item)">
                     <g @click="onClickBeverage(item)">
                         <rect
-                            :rx="iconSize" :ry="iconSize" :width="iconSize" :height="iconSize"
-                            :transform="`translate(${-iconSize / 2},  ${-iconSize / 2})`"
-                            :style="`fill: LightGray; opacity: 1; stroke: grey; stroke-width: 1`" />
+                            :x="-iconSize / 2"
+                            :y="-iconSize / 2"
+                            :rx="iconSize"
+                            :ry="iconSize"
+                            :width="iconSize"
+                            :height="iconSize"
+                            :fill="`LightGray`"
+                            :opacity="1"
+                            :stroke="`grey`"
+                            :stroke-width="1" />
                         <image :href="item.icon"
+                            :x="-(iconSize - iconPadding) / 2"
+                            :y="-(iconSize - iconPadding) / 2"
                             :width="iconSize - iconPadding"
-                            :height="iconSize - iconPadding"
-                            :transform="`translate(-${(iconSize - iconPadding) / 2} -${(iconSize - iconPadding) / 2})`" />
+                            :height="iconSize - iconPadding" />
                     </g>
                     <!-- Label -->
                     <text v-if="hoverBeverage === item || (beverageInMind.length > 0 && focusBeverageInMind(item))"
                         :y="(iconSize)"
-                        dominant-baseline="middle"
-                        text-anchor="middle"
+                        :dominant-baseline="`middle`"
+                        :text-anchor="`middle`"
                         :font-size="`${iconFontSize}px`"
                         :style="`font-weight: 1000;`">
                         {{ item.name }}
@@ -58,37 +65,41 @@
                 <g v-if="hoverBeverage !== null">
                     <!-- x axis  -->
                     <rect
-                        :x="scalerClippedX(hoverBeverage.calories)"
+                        :x="scalerClippedX(hoverBeverage.calories) - (24 / 2)"
                         :y="scalerY(0)"
-                        :rx="4" :ry="4" :width="24" :height="16"
-                        :transform="`translate(${-24 / 2},  ${0})`"
-                        :style="`fill: black; opacity: 1;`" />
+                        :rx="4"
+                        :ry="4"
+                        :width="24"
+                        :height="16"
+                        :fill="`black`"
+                        :opacity="1" />
 
                     <text
                         :x="scalerClippedX(hoverBeverage.calories)"
-                        :y="scalerY(0)"
-                        dominant-baseline="middle"
-                        text-anchor="middle"
-                        :transform="`translate(${0},  ${8})`"
+                        :y="scalerY(0) + 8"
+                        :dominant-baseline="`middle`"
+                        :text-anchor="`middle`"
                         :font-size="`9px`"
-                        :style="`fill:white;`">
+                        :fill="`white`">
                         {{ hoverBeverage.calories }}
                     </text>
                     <!-- y axis -->
                     <rect
-                        :x="scalerClippedX(0)"
-                        :y="scalerY(hoverBeverage.caffeine)"
-                        :rx="4" :ry="4" :width="24" :height="16"
-                        :transform="`translate(${-24 * 1.5},  ${-8})`"
-                        :style="`fill: black; opacity: 1;`" />
+                        :x="scalerClippedX(0) - (24 * 1.5)"
+                        :y="scalerY(hoverBeverage.caffeine) - 8"
+                        :rx="4"
+                        :ry="4"
+                        :width="24"
+                        :height="16"
+                        :fill="`black`"
+                        :opacity="1" />
                     <text
-                        :x="scalerClippedX(0)"
+                        :x="scalerClippedX(0) - 24"
                         :y="scalerY(hoverBeverage.caffeine)"
-                        dominant-baseline="middle"
-                        text-anchor="middle"
-                        :transform="`translate(${-24},  ${0})`"
+                        :dominant-baseline="`middle`"
+                        :text-anchor="`middle`"
                         :font-size="`9px`"
-                        :style="`fill:white;`">
+                        :fill="`white`">
                         {{ hoverBeverage.caffeine }}
                     </text>
                 </g>

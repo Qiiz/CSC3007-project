@@ -3,11 +3,11 @@
         <v-container style="max-width: 1280px">
             <MainBody msg="CSC3007 Project Repository" />
             <a href="https://github.com/Qiiz/CSC3007-project" target="_blank">https://github.com/Qiiz/CSC3007-project</a>
+            
             <h2>Source Working in Progress Document</h2>
             <a href="https://docs.google.com/document/d/1A0PJkCaWCEPrLr09tMKNEzVuimND8e4cDRdmY8suibs/" target="_blank">
                 https://docs.google.com/document/d/1A0PJkCaWCEPrLr09tMKNEzVuimND8e4cDRdmY8suibs/
             </a>
-
             <iframe width="100%" src="https://docs.google.com/document/d/e/2PACX-1vTcgUsz3thLMaD6UI9_w3rjACtKHN2u8CjrHxN--DCCCMs9JSRUnpC1DnlXUqijLhfOoE0nzxkTHmFJ/pub?embedded=true" @load="resizeIframe"></iframe>
         </v-container>
     </div>

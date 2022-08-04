@@ -5,7 +5,12 @@
                 <v-col cols="12">
                     <h1>Milestone 2</h1>
 
-                    <p>implementation at <a href="./#/milestone2">Milestone 2 Dashboard</a>.</p>
+                    <p>Implementation at <a href="./#/milestone2">Milestone 2 Dashboard</a>.</p>
+
+                    <h2>Milestone 2 Slides</h2>
+
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQbCrPwg2uxM5sTKtD6Ip-WLOh6IiDZpR5F2GHyDCnCjwmr4bgtx53yDmWXIX6Tmw/embed?start=true&loop=false&delayms=1800000" frameborder="0" width="1024" height="640" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
 
                     <p>
                         Out of the two visualisations in Milestone 1,
